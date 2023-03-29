@@ -22,18 +22,22 @@ def OrderCoffee():
     while True:
         menu_list = list(menu.keys())
         ShowMenu()
-        choice = input("메뉴이름을 입력하시오.\n(주문완료 : q, 메뉴추가 : menu)\n")
+        choice = input("메뉴이름을 입력하시오.\n(주문완료 : q, 메뉴추가 : m, 주문변경: c)\n")
         if choice == 'q':
             break
-        elif choice == 'menu':
+        elif choice == 'm':
             menu_add()
             continue
+
         # 입력값이 메뉴에 있으면 수량 입력. 아니면 다시 메뉴 이름 입력
         elif choice in menu_list:
             add_option,add_price = Ice_or_Hot()
             choice2 = add_option + choice
             quantity[choice2] = int(input("수량을 입력하시오\n"))
             total_price[choice2] = (menu[choice]+add_price) * quantity[choice2]
+            continue
+        elif choice == 'c':
+            
             continue
         elif choice not in menu_list:
             print("다시 입력해주세요")
@@ -93,7 +97,7 @@ def ShowMenu():
     print("------------------------")
 
 #  주문받기
-print("스타벅스 키오스크 오신것을 환영합니다.")
+print("스타벅스에 오신것을 환영합니다.")
 
 # 메뉴 보여주기, 주문 하기
 total_price,quantity = OrderCoffee()
@@ -114,3 +118,4 @@ elif c >= 2:
     print(f"현금으로 {sum(price)}원을 결제합니다.\n현금을 넣어주세요")
 else:
     print(f"카드로 {sum(price)}원을 결제합니다.\n카드를 넣어주세요")
+
