@@ -11,16 +11,15 @@ class Menu:
         if price:
             self.price = price
         
-
-class Order:
+class Order():
     def __init__(self,menu,quantity,temperature):
         self.menu = menu
         self.quantity = quantity
         self.total_price = (menu.price +temperature) * quantity
         
     def __str__(self):
-        return f"{self.menu.num}.{self.menu.name} 수량: {self.quantity} 총: {self.total_price}원"
-    def update_order(self,quantity = None):
+        return f"{self.menu.name} 수량: {self.quantity} 총: {self.total_price}원"
+    def update_order(self,quantity):
         if quantity:
             self.quantity = quantity
             self.total_price = self.menu.price * self.quantity
@@ -66,8 +65,11 @@ while True:
         menu_temp = int(input("1. ICE(+500) 2. HOT\n"))
         if menu_temp == 1:
             t = 500
-        if menu_temp == 2:
+        elif menu_temp == 2:
             t = 0
+        else:
+            print("잘못 입력하셨습니다. 다시 입력하세요.")
+            continue
         menu_quantity = int(input("수량을 입력하세요."))
         order= Order(order_menu,menu_quantity,t)
         Dorder_list.append(order)
@@ -87,20 +89,19 @@ while True:
         if category_choice == '1':
             print("*****음료 주문*****")
             for i,order in enumerate(Dorder_list):
-                print(order)
+                print(i+1,order)
             menu_choice = int(input("수정할 메뉴 번호를 입력하세요: "))
             new_quantity = int(input("수정할 수량을 입력하시오."))
             Dorder_list[menu_choice-1].update_order(new_quantity)
-            print(f"{Dorder_list[menu_choice-1].name}의 수량이 수정되었습니다.")
+            print(f"{Dorder_list[menu_choice-1].menu.name}의 수량이 수정되었습니다.")
         if category_choice =='2':
             print("*****베이커리 주문*****")
             for i,order in enumerate(Border_list):
-                print(order)
+                print(i+1,order)
             menu_choice = int(input("수정할 메뉴 번호를 입력하세요: "))
             new_quantity = int(input("수정할 수량을 입력하시오."))
             Border_list[menu_choice-1].update_order(new_quantity)
-            print(f"{Border_list[menu_choice-1].name}의 수량이 수정되었습니다.")
-    
+            print(f"{Dorder_list[menu_choice-1].menu.name}의 수량이 수정되었습니다.")
     elif choice == "4":
         print("*****음료 주문*****")
         for order in Dorder_list:
