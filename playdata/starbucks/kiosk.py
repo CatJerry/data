@@ -1,3 +1,6 @@
+# 마지막 줄이 왜 1번 선택했을때만 출력되는지 모르겠다.
+# 2번에서는 출력이 안됨
+
 class Menu:
     def __init__(self,num,name,price):
         self.name = name
@@ -62,7 +65,7 @@ while True:
             print(f"{item.num}.{item.name}:{item.price}")
         menu_choice= int(input("주문할 메뉴 번호를 입력하세요: "))
         order_menu = drink_items[menu_choice-1]
-        menu_temp = int(input("1. ICE(+500) 2. HOT\n"))
+        menu_temp = int(input("1. ICE(+500) 2. HOT :"))
         if menu_temp == 1:
             t = 500
         elif menu_temp == 2:
@@ -70,7 +73,7 @@ while True:
         else:
             print("잘못 입력하셨습니다. 다시 입력하세요.")
             continue
-        menu_quantity = int(input("수량을 입력하세요."))
+        menu_quantity = int(input("수량을 입력하세요.:"))
         order= Order(order_menu,menu_quantity,t)
         Dorder_list.append(order)
         print(f"{order_menu.name}이(가){menu_quantity}개 주문되었습니다.")
@@ -79,7 +82,7 @@ while True:
             print(f"{i+1}.{item.name}:{item.price}")
         menu_choice= int(input("주문할 메뉴 번호를 입력하세요: "))
         order_menu = bakery_items[menu_choice-1]
-        menu_quantity = int(input("수량을 입력하세요."))
+        menu_quantity = int(input("수량을 입력하세요. :"))
         t = 0
         order= Order(order_menu,menu_quantity,t)
         Border_list.append(order)
@@ -90,16 +93,16 @@ while True:
             print("*****음료 주문*****")
             for i,order in enumerate(Dorder_list):
                 print(i+1,order)
-            menu_choice = int(input("수정할 메뉴 번호를 입력하세요: "))
-            new_quantity = int(input("수정할 수량을 입력하시오."))
+            menu_choice = int(input("수정할 메뉴 번호를 입력하세요 : "))
+            new_quantity = int(input("수정할 수량을 입력하시오. :"))
             Dorder_list[menu_choice-1].update_order(new_quantity)
             print(f"{Dorder_list[menu_choice-1].menu.name}의 수량이 수정되었습니다.")
         if category_choice =='2':
             print("*****베이커리 주문*****")
             for i,order in enumerate(Border_list):
                 print(i+1,order)
-            menu_choice = int(input("수정할 메뉴 번호를 입력하세요: "))
-            new_quantity = int(input("수정할 수량을 입력하시오."))
+            menu_choice = int(input("수정할 메뉴 번호를 입력하세요 : "))
+            new_quantity = int(input("수정할 수량을 입력하시오. : "))
             Border_list[menu_choice-1].update_order(new_quantity)
             print(f"{Dorder_list[menu_choice-1].menu.name}의 수량이 수정되었습니다.")
     elif choice == "4":
