@@ -6,7 +6,7 @@ import pandas as pd
 
 df = pd.read_csv('api_apply/criminal.csv',encoding='cp949')
 df = pd.DataFrame(df)
-HOST = "172.18.0.0"
+HOST = "172.18.0.2"
 PORT = "3306"
 USER = "soyoung"
 PW = "0000"
