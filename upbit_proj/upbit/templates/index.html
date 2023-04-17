@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Coin Chart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div id="chart-container"></div>
+    <script>
+        var chart = Highcharts.chart('chart-container', {
+            chart: {
+                type: 'candlestick',
+                events: {
+                    load: function () {
+                        // 데이터 가져오기
+                        setInterval(function () {
+                            $.ajax({
+                                url: '/get_coin_data/',
+                                type: 'GET',
+                                success: function (data) {
+                                    chart.series[0].addPoint([
+                                        Date.now(),
+                                        data.opening_price,
+                                        data.high_price,
+                                        data.low_price,
+                                        data.trade_price,
+                                    ]);
+                                }
+                            });
+                        }, 1000); // 1초마다 업데이트
+                    }
+                }
+            },
+            title: {
+                text: 'Coin Chart'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: 'Price'
+                }
+            },
+            series: [{
+                type: 'candlestick',
+                name: 'Coin Data',
+                data: []
+            }]
+        });
+    </script>
+</body>
+</html>
