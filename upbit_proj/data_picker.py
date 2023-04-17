@@ -5,11 +5,11 @@ import mplfinance as mpf
 import pandas as pd
 import time
 config_dict = {
-    'host' : '192.168.70.40',
+    'host' : ',,,
     'port' : '3305',
     'user' : 'root',
     'database' : 'coin',
-    'password' : '7610'
+    'password' : ''
 }
 
 def database_connect(localhost, user_name, password, db_name, port_number):
