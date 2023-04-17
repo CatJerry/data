@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coin',
         'USER': 'root',
-        'PASSWORD': '7610',
-        'HOST': '192.168.70.40',
+        'PASSWORD': '...',
+        'HOST': '...',
         'PORT': '3305',
     }
 }
